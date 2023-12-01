@@ -25,34 +25,34 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_actualPrice\",\"type\":\"uint256\"},{\"name\":\"_deltaBlocks\",\"type\":\"uint256\"}],\"name\":\"getPrice\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This contract extends `Strategy`\",\"methods\":{},\"title\":\"FastStrategy contract\"},\"userdoc\":{\"methods\":{},\"notice\":\"This contract implement a linear decrease function, twice faster than `NormalStrategy`\"}},\"settings\":{\"compilationTarget\":{\"/Users/andrea/Desktop/workspace/DAPP_SmartAuction/contracts/Strategy.sol\":\"FastStrategy\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/andrea/Desktop/workspace/DAPP_SmartAuction/contracts/Strategy.sol\":{\"keccak256\":\"0xbd5ec3f1821baf1e986c323db7c2fedd698d14425ec43afd01ee4b802ed7ab5c\",\"urls\":[\"bzzr://25f76b6158b76876be73de7f7ad235f9ed90fbe340526d33f4728410d9428764\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5060ac8061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80635cf4ee9114602d575b600080fd5b604d60048036036040811015604157600080fd5b5080359060200135605f565b60408051918252519081900360200190f35b6000600282028303838111156077576000915050607a565b90505b9291505056fea165627a7a72305820b54fae94950f221ceef788af40b7ca82f1a476d03d84515cb8bf6d73cb65ef880029",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80635cf4ee9114602d575b600080fd5b604d60048036036040811015604157600080fd5b5080359060200135605f565b60408051918252519081900360200190f35b6000600282028303838111156077576000915050607a565b90505b9291505056fea165627a7a72305820b54fae94950f221ceef788af40b7ca82f1a476d03d84515cb8bf6d73cb65ef880029",
-  "sourceMap": "1163:285:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1163:285:5;;;;;;;",
-  "deployedSourceMap": "1163:285:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1163:285:5;;;;;;;;;;;;;;;;;;;1204:242;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1204:242:5;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;1280:4;1323:1;:16;;1307:33;;1386:18;;;1382:57;;;1413:1;1406:8;;;;;1382:57;1436:3;-1:-1:-1;1204:242:5;;;;;:::o",
-  "source": "pragma solidity ^ 0.5.1;\n\n\n/// @title Strategy contract\n/// @author Andrea Bruno 585457\n/// @notice This abstract contract describes what a strategy should implement.\n/// @dev The following comments are written using the Solidity NatSpec Format.\ncontract Strategy {\n\n    /// @notice This function compute the price.\n    /// @param _actualPrice is the current price of the item\n    /// @param _deltaBlocks the blocks elapsed.\n    /// @return The updated current price.\n    function getPrice(uint _actualPrice, uint _deltaBlocks) public view returns(uint);\n}\n\n\n\n\n/// @title NormalStrategy contract\n/// @notice This contract implement a linear decrease function.\n/// @dev This contract extends `Strategy`\ncontract NormalStrategy is Strategy {\n\n    function getPrice(uint _actualPrice, uint _deltaBlocks) public view returns(uint) {\n        uint tmp = _actualPrice - _deltaBlocks;\n\n        //in case of underflow\n        if (tmp > _actualPrice) return 0;\n        else return tmp;\n    }\n}\n\n\n\n\n\n/// @title FastStrategy contract\n/// @notice This contract implement a linear decrease function, twice faster than `NormalStrategy`\n/// @dev This contract extends `Strategy`\ncontract FastStrategy is Strategy {\n\n    function getPrice(uint _actualPrice, uint _deltaBlocks) public view returns(uint) {\n        uint tmp = _actualPrice - (2 * _deltaBlocks);\n\n        //in case of underflow\n        if (tmp > _actualPrice) return 0;\n        else return tmp;\n    }\n}\n\n\n\n\n\n/// @title SlowStrategy contract\n/// @notice This contract implement a linear decrease function, twice slower than `NormalStrategy`\n/// @dev This contract extends `Strategy`\ncontract SlowStrategy is Strategy {\n\n    function getPrice(uint _actualPrice, uint _deltaBlocks) public view returns(uint) {\n        uint tmp = _actualPrice - (_deltaBlocks / 2);\n\n        //in case of underflow\n        if (tmp > _actualPrice) return 0;\n        else return tmp;\n    }\n}\n",
-  "sourcePath": "/Users/andrea/Desktop/workspace/DAPP_SmartAuction/contracts/Strategy.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.1+commit.c8a2cb62\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_actualPrice\",\"type\":\"uint256\"},{\"name\":\"_deltaBlocks\",\"type\":\"uint256\"}],\"name\":\"getPrice\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This contract extends `Strategy`\",\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Strategy.sol\":\"FastStrategy\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Strategy.sol\":{\"keccak256\":\"0x3d9027513d0d6c42ee69aaeffd2c2459b2c23ee6a9e930ffae5d998c4027035c\",\"urls\":[\"bzzr://6df86c670bd2adf3b244594dcf2dd894715207b061e624da19f7a16e38a11484\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060e58061001f6000396000f3fe6080604052600436106039576000357c0100000000000000000000000000000000000000000000000000000000900480635cf4ee9114603e575b600080fd5b348015604957600080fd5b50607d60048036036040811015605e57600080fd5b8101908080359060200190929190803590602001909291905050506093565b6040518082815260200191505060405180910390f35b60008082600202840390508381111560ae57600091505060b3565b809150505b9291505056fea165627a7a72305820c5f1b5996b1abc106535711a98bdb14424c131a2b1b1a61cbba94f36c50a9dad0029",
+  "deployedBytecode": "0x6080604052600436106039576000357c0100000000000000000000000000000000000000000000000000000000900480635cf4ee9114603e575b600080fd5b348015604957600080fd5b50607d60048036036040811015605e57600080fd5b8101908080359060200190929190803590602001909291905050506093565b6040518082815260200191505060405180910390f35b60008082600202840390508381111560ae57600091505060b3565b809150505b9291505056fea165627a7a72305820c5f1b5996b1abc106535711a98bdb14424c131a2b1b1a61cbba94f36c50a9dad0029",
+  "sourceMap": "1203:294:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1203:294:5;;;;;;;",
+  "deployedSourceMap": "1203:294:5:-;;;;;;;;;;;;;;;;;;;;;;1246:248;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1246:248:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1246:248:5;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;1322:4;1339:8;1370:12;1366:1;:16;1350:12;:33;1339:44;;1438:12;1432:3;:18;1428:58;;;1459:1;1452:8;;;;;1428:58;1483:3;1476:10;;;1246:248;;;;;:::o",
+  "source": "pragma solidity ^ 0.5.1;\r\n\r\n\r\n/// @title Strategy contract\r\n/// @author Andrea Bruno 585457\r\n/// @notice This abstract contract describes what a strategy should implement.\r\n/// @dev The following comments are written using the Solidity NatSpec Format.\r\ncontract Strategy {\r\n\r\n    /// @notice This function compute the price.\r\n    /// @param _actualPrice is the current price of the item\r\n    /// @param _deltaBlocks the blocks elapsed.\r\n    /// @return The updated current price.\r\n    function getPrice(uint _actualPrice, uint _deltaBlocks) public view returns(uint);\r\n}\r\n\r\n\r\n\r\n\r\n/// @title NormalStrategy contract\r\n/// @notice This contract implement a linear decrease function.\r\n/// @dev This contract extends `Strategy`\r\ncontract NormalStrategy is Strategy {\r\n\r\n    function getPrice(uint _actualPrice, uint _deltaBlocks) public view returns(uint) {\r\n        uint tmp = _actualPrice - _deltaBlocks;\r\n\r\n        //in case of underflow\r\n        if (tmp > _actualPrice) return 0;\r\n        else return tmp;\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/// @title FastStrategy contract\r\n/// @notice This contract implement a linear decrease function, twice faster than `NormalStrategy`\r\n/// @dev This contract extends `Strategy`\r\ncontract FastStrategy is Strategy {\r\n\r\n    function getPrice(uint _actualPrice, uint _deltaBlocks) public view returns(uint) {\r\n        uint tmp = _actualPrice - (2 * _deltaBlocks);\r\n\r\n        //in case of underflow\r\n        if (tmp > _actualPrice) return 0;\r\n        else return tmp;\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/// @title SlowStrategy contract\r\n/// @notice This contract implement a linear decrease function, twice slower than `NormalStrategy`\r\n/// @dev This contract extends `Strategy`\r\ncontract SlowStrategy is Strategy {\r\n\r\n    function getPrice(uint _actualPrice, uint _deltaBlocks) public view returns(uint) {\r\n        uint tmp = _actualPrice - (_deltaBlocks / 2);\r\n\r\n        //in case of underflow\r\n        if (tmp > _actualPrice) return 0;\r\n        else return tmp;\r\n    }\r\n}\r\n",
+  "sourcePath": "C:\\workspace\\dApp_SmartAuction\\contracts\\Strategy.sol",
   "ast": {
-    "absolutePath": "/Users/andrea/Desktop/workspace/DAPP_SmartAuction/contracts/Strategy.sol",
+    "absolutePath": "project:/contracts/Strategy.sol",
     "exportedSymbols": {
       "FastStrategy": [
-        608
+        700
       ],
       "NormalStrategy": [
-        578
+        670
       ],
       "SlowStrategy": [
-        638
+        730
       ],
       "Strategy": [
-        551
+        643
       ]
     },
-    "id": 639,
+    "id": 731,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 541,
+        "id": 633,
         "literals": [
           "solidity",
           "^",
@@ -66,35 +66,35 @@
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "contract",
-        "documentation": "@title Strategy contract\n @author Andrea Bruno 585457\n @notice This abstract contract describes what a strategy should implement.\n @dev The following comments are written using the Solidity NatSpec Format.",
+        "documentation": "@dev The following comments are written using the Solidity NatSpec Format.",
         "fullyImplemented": false,
-        "id": 551,
+        "id": 643,
         "linearizedBaseContracts": [
-          551
+          643
         ],
         "name": "Strategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
-            "documentation": "@notice This function compute the price.\n @param _actualPrice is the current price of the item\n @param _deltaBlocks the blocks elapsed.\n @return The updated current price.",
-            "id": 550,
+            "documentation": "@return The updated current price.",
+            "id": 642,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getPrice",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 546,
+              "id": 638,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 543,
+                  "id": 635,
                   "name": "_actualPrice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 550,
-                  "src": "490:17:5",
+                  "scope": 642,
+                  "src": "503:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -102,10 +102,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 542,
+                    "id": 634,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "490:4:5",
+                    "src": "503:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -116,11 +116,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 545,
+                  "id": 637,
                   "name": "_deltaBlocks",
                   "nodeType": "VariableDeclaration",
-                  "scope": 550,
-                  "src": "509:17:5",
+                  "scope": 642,
+                  "src": "522:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -128,10 +128,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 544,
+                    "id": 636,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "509:4:5",
+                    "src": "522:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -141,19 +141,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "489:38:5"
+              "src": "502:38:5"
             },
             "returnParameters": {
-              "id": 549,
+              "id": 641,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 548,
+                  "id": 640,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 550,
-                  "src": "548:4:5",
+                  "scope": 642,
+                  "src": "561:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -161,10 +161,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 547,
+                    "id": 639,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "548:4:5",
+                    "src": "561:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -174,17 +174,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "547:6:5"
+              "src": "560:6:5"
             },
-            "scope": 551,
-            "src": "472:82:5",
+            "scope": 643,
+            "src": "485:82:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 639,
-        "src": "246:310:5"
+        "scope": 731,
+        "src": "253:317:5"
       },
       {
         "baseContracts": [
@@ -192,53 +192,53 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 552,
+              "id": 644,
               "name": "Strategy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 551,
-              "src": "729:8:5",
+              "referencedDeclaration": 643,
+              "src": "751:8:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Strategy_$551",
+                "typeIdentifier": "t_contract$_Strategy_$643",
                 "typeString": "contract Strategy"
               }
             },
-            "id": 553,
+            "id": 645,
             "nodeType": "InheritanceSpecifier",
-            "src": "729:8:5"
+            "src": "751:8:5"
           }
         ],
         "contractDependencies": [
-          551
+          643
         ],
         "contractKind": "contract",
-        "documentation": "@title NormalStrategy contract\n @notice This contract implement a linear decrease function.\n @dev This contract extends `Strategy`",
+        "documentation": "@dev This contract extends `Strategy`",
         "fullyImplemented": true,
-        "id": 578,
+        "id": 670,
         "linearizedBaseContracts": [
-          578,
-          551
+          670,
+          643
         ],
         "name": "NormalStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 576,
+              "id": 668,
               "nodeType": "Block",
-              "src": "827:154:5",
+              "src": "851:160:5",
               "statements": [
                 {
                   "assignments": [
-                    563
+                    655
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 563,
+                      "id": 655,
                       "name": "tmp",
                       "nodeType": "VariableDeclaration",
-                      "scope": 576,
-                      "src": "837:8:5",
+                      "scope": 668,
+                      "src": "862:8:5",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -246,10 +246,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 562,
+                        "id": 654,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "837:4:5",
+                        "src": "862:4:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -259,26 +259,26 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 567,
+                  "id": 659,
                   "initialValue": {
                     "argumentTypes": null,
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 566,
+                    "id": 658,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 564,
+                      "id": 656,
                       "name": "_actualPrice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 555,
-                      "src": "848:12:5",
+                      "referencedDeclaration": 647,
+                      "src": "873:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -288,25 +288,25 @@
                     "operator": "-",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 565,
+                      "id": 657,
                       "name": "_deltaBlocks",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 557,
-                      "src": "863:12:5",
+                      "referencedDeclaration": 649,
+                      "src": "888:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "848:27:5",
+                    "src": "873:27:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "837:38:5"
+                  "src": "862:38:5"
                 },
                 {
                   "condition": {
@@ -315,19 +315,19 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 570,
+                    "id": 662,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 568,
+                      "id": 660,
                       "name": "tmp",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 563,
-                      "src": "921:3:5",
+                      "referencedDeclaration": 655,
+                      "src": "949:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -337,18 +337,18 @@
                     "operator": ">",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 569,
+                      "id": 661,
                       "name": "_actualPrice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 555,
-                      "src": "927:12:5",
+                      "referencedDeclaration": 647,
+                      "src": "955:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "921:18:5",
+                    "src": "949:18:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -357,37 +357,37 @@
                   "falseBody": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 573,
+                      "id": 665,
                       "name": "tmp",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 563,
-                      "src": "971:3:5",
+                      "referencedDeclaration": 655,
+                      "src": "1000:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "functionReturnParameters": 561,
-                    "id": 574,
+                    "functionReturnParameters": 653,
+                    "id": 666,
                     "nodeType": "Return",
-                    "src": "964:10:5"
+                    "src": "993:10:5"
                   },
-                  "id": 575,
+                  "id": 667,
                   "nodeType": "IfStatement",
-                  "src": "917:57:5",
+                  "src": "945:58:5",
                   "trueBody": {
                     "expression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 571,
+                      "id": 663,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "948:1:5",
+                      "src": "976:1:5",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
@@ -395,32 +395,32 @@
                       },
                       "value": "0"
                     },
-                    "functionReturnParameters": 561,
-                    "id": 572,
+                    "functionReturnParameters": 653,
+                    "id": 664,
                     "nodeType": "Return",
-                    "src": "941:8:5"
+                    "src": "969:8:5"
                   }
                 }
               ]
             },
             "documentation": null,
-            "id": 577,
+            "id": 669,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getPrice",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 558,
+              "id": 650,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 555,
+                  "id": 647,
                   "name": "_actualPrice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 577,
-                  "src": "763:17:5",
+                  "scope": 669,
+                  "src": "787:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -428,10 +428,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 554,
+                    "id": 646,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "763:4:5",
+                    "src": "787:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -442,11 +442,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 557,
+                  "id": 649,
                   "name": "_deltaBlocks",
                   "nodeType": "VariableDeclaration",
-                  "scope": 577,
-                  "src": "782:17:5",
+                  "scope": 669,
+                  "src": "806:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -454,10 +454,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 556,
+                    "id": 648,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "782:4:5",
+                    "src": "806:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -467,19 +467,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "762:38:5"
+              "src": "786:38:5"
             },
             "returnParameters": {
-              "id": 561,
+              "id": 653,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 560,
+                  "id": 652,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 577,
-                  "src": "821:4:5",
+                  "scope": 669,
+                  "src": "845:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -487,10 +487,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 559,
+                    "id": 651,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "821:4:5",
+                    "src": "845:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -500,17 +500,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "820:6:5"
+              "src": "844:6:5"
             },
-            "scope": 578,
-            "src": "745:236:5",
+            "scope": 670,
+            "src": "769:242:5",
             "stateMutability": "view",
-            "superFunction": 550,
+            "superFunction": 642,
             "visibility": "public"
           }
         ],
-        "scope": 639,
-        "src": "702:281:5"
+        "scope": 731,
+        "src": "724:290:5"
       },
       {
         "baseContracts": [
@@ -518,53 +518,53 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 579,
+              "id": 671,
               "name": "Strategy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 551,
-              "src": "1188:8:5",
+              "referencedDeclaration": 643,
+              "src": "1228:8:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Strategy_$551",
+                "typeIdentifier": "t_contract$_Strategy_$643",
                 "typeString": "contract Strategy"
               }
             },
-            "id": 580,
+            "id": 672,
             "nodeType": "InheritanceSpecifier",
-            "src": "1188:8:5"
+            "src": "1228:8:5"
           }
         ],
         "contractDependencies": [
-          551
+          643
         ],
         "contractKind": "contract",
-        "documentation": "@title FastStrategy contract\n @notice This contract implement a linear decrease function, twice faster than `NormalStrategy`\n @dev This contract extends `Strategy`",
+        "documentation": "@dev This contract extends `Strategy`",
         "fullyImplemented": true,
-        "id": 608,
+        "id": 700,
         "linearizedBaseContracts": [
-          608,
-          551
+          700,
+          643
         ],
         "name": "FastStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 606,
+              "id": 698,
               "nodeType": "Block",
-              "src": "1286:160:5",
+              "src": "1328:166:5",
               "statements": [
                 {
                   "assignments": [
-                    590
+                    682
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 590,
+                      "id": 682,
                       "name": "tmp",
                       "nodeType": "VariableDeclaration",
-                      "scope": 606,
-                      "src": "1296:8:5",
+                      "scope": 698,
+                      "src": "1339:8:5",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -572,10 +572,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 589,
+                        "id": 681,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1296:4:5",
+                        "src": "1339:4:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -585,26 +585,26 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 597,
+                  "id": 689,
                   "initialValue": {
                     "argumentTypes": null,
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 596,
+                    "id": 688,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 591,
+                      "id": 683,
                       "name": "_actualPrice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 582,
-                      "src": "1307:12:5",
+                      "referencedDeclaration": 674,
+                      "src": "1350:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -621,7 +621,7 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 594,
+                          "id": 686,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -629,14 +629,14 @@
                           "leftExpression": {
                             "argumentTypes": null,
                             "hexValue": "32",
-                            "id": 592,
+                            "id": 684,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1323:1:5",
+                            "src": "1366:1:5",
                             "subdenomination": null,
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_2_by_1",
@@ -648,45 +648,45 @@
                           "operator": "*",
                           "rightExpression": {
                             "argumentTypes": null,
-                            "id": 593,
+                            "id": 685,
                             "name": "_deltaBlocks",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 584,
-                            "src": "1327:12:5",
+                            "referencedDeclaration": 676,
+                            "src": "1370:12:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             }
                           },
-                          "src": "1323:16:5",
+                          "src": "1366:16:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         }
                       ],
-                      "id": 595,
+                      "id": 687,
                       "isConstant": false,
                       "isInlineArray": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "TupleExpression",
-                      "src": "1322:18:5",
+                      "src": "1365:18:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1307:33:5",
+                    "src": "1350:33:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1296:44:5"
+                  "src": "1339:44:5"
                 },
                 {
                   "condition": {
@@ -695,19 +695,19 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 600,
+                    "id": 692,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 598,
+                      "id": 690,
                       "name": "tmp",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 590,
-                      "src": "1386:3:5",
+                      "referencedDeclaration": 682,
+                      "src": "1432:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -717,18 +717,18 @@
                     "operator": ">",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 599,
+                      "id": 691,
                       "name": "_actualPrice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 582,
-                      "src": "1392:12:5",
+                      "referencedDeclaration": 674,
+                      "src": "1438:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1386:18:5",
+                    "src": "1432:18:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -737,37 +737,37 @@
                   "falseBody": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 603,
+                      "id": 695,
                       "name": "tmp",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 590,
-                      "src": "1436:3:5",
+                      "referencedDeclaration": 682,
+                      "src": "1483:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "functionReturnParameters": 588,
-                    "id": 604,
+                    "functionReturnParameters": 680,
+                    "id": 696,
                     "nodeType": "Return",
-                    "src": "1429:10:5"
+                    "src": "1476:10:5"
                   },
-                  "id": 605,
+                  "id": 697,
                   "nodeType": "IfStatement",
-                  "src": "1382:57:5",
+                  "src": "1428:58:5",
                   "trueBody": {
                     "expression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 601,
+                      "id": 693,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1413:1:5",
+                      "src": "1459:1:5",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
@@ -775,32 +775,32 @@
                       },
                       "value": "0"
                     },
-                    "functionReturnParameters": 588,
-                    "id": 602,
+                    "functionReturnParameters": 680,
+                    "id": 694,
                     "nodeType": "Return",
-                    "src": "1406:8:5"
+                    "src": "1452:8:5"
                   }
                 }
               ]
             },
             "documentation": null,
-            "id": 607,
+            "id": 699,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getPrice",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 585,
+              "id": 677,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 582,
+                  "id": 674,
                   "name": "_actualPrice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 607,
-                  "src": "1222:17:5",
+                  "scope": 699,
+                  "src": "1264:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -808,10 +808,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 581,
+                    "id": 673,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1222:4:5",
+                    "src": "1264:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -822,11 +822,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 584,
+                  "id": 676,
                   "name": "_deltaBlocks",
                   "nodeType": "VariableDeclaration",
-                  "scope": 607,
-                  "src": "1241:17:5",
+                  "scope": 699,
+                  "src": "1283:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -834,10 +834,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 583,
+                    "id": 675,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1241:4:5",
+                    "src": "1283:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -847,19 +847,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1221:38:5"
+              "src": "1263:38:5"
             },
             "returnParameters": {
-              "id": 588,
+              "id": 680,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 587,
+                  "id": 679,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 607,
-                  "src": "1280:4:5",
+                  "scope": 699,
+                  "src": "1322:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -867,10 +867,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 586,
+                    "id": 678,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1280:4:5",
+                    "src": "1322:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -880,17 +880,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1279:6:5"
+              "src": "1321:6:5"
             },
-            "scope": 608,
-            "src": "1204:242:5",
+            "scope": 700,
+            "src": "1246:248:5",
             "stateMutability": "view",
-            "superFunction": 550,
+            "superFunction": 642,
             "visibility": "public"
           }
         ],
-        "scope": 639,
-        "src": "1163:285:5"
+        "scope": 731,
+        "src": "1203:294:5"
       },
       {
         "baseContracts": [
@@ -898,53 +898,53 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 609,
+              "id": 701,
               "name": "Strategy",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 551,
-              "src": "1653:8:5",
+              "referencedDeclaration": 643,
+              "src": "1711:8:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Strategy_$551",
+                "typeIdentifier": "t_contract$_Strategy_$643",
                 "typeString": "contract Strategy"
               }
             },
-            "id": 610,
+            "id": 702,
             "nodeType": "InheritanceSpecifier",
-            "src": "1653:8:5"
+            "src": "1711:8:5"
           }
         ],
         "contractDependencies": [
-          551
+          643
         ],
         "contractKind": "contract",
-        "documentation": "@title SlowStrategy contract\n @notice This contract implement a linear decrease function, twice slower than `NormalStrategy`\n @dev This contract extends `Strategy`",
+        "documentation": "@dev This contract extends `Strategy`",
         "fullyImplemented": true,
-        "id": 638,
+        "id": 730,
         "linearizedBaseContracts": [
-          638,
-          551
+          730,
+          643
         ],
         "name": "SlowStrategy",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 636,
+              "id": 728,
               "nodeType": "Block",
-              "src": "1751:160:5",
+              "src": "1811:166:5",
               "statements": [
                 {
                   "assignments": [
-                    620
+                    712
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 620,
+                      "id": 712,
                       "name": "tmp",
                       "nodeType": "VariableDeclaration",
-                      "scope": 636,
-                      "src": "1761:8:5",
+                      "scope": 728,
+                      "src": "1822:8:5",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -952,10 +952,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 619,
+                        "id": 711,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1761:4:5",
+                        "src": "1822:4:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -965,26 +965,26 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 627,
+                  "id": 719,
                   "initialValue": {
                     "argumentTypes": null,
                     "commonType": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 626,
+                    "id": 718,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 621,
+                      "id": 713,
                       "name": "_actualPrice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 612,
-                      "src": "1772:12:5",
+                      "referencedDeclaration": 704,
+                      "src": "1833:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1001,19 +1001,19 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 624,
+                          "id": 716,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
                             "argumentTypes": null,
-                            "id": 622,
+                            "id": 714,
                             "name": "_deltaBlocks",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 614,
-                            "src": "1788:12:5",
+                            "referencedDeclaration": 706,
+                            "src": "1849:12:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
@@ -1024,14 +1024,14 @@
                           "rightExpression": {
                             "argumentTypes": null,
                             "hexValue": "32",
-                            "id": 623,
+                            "id": 715,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "kind": "number",
                             "lValueRequested": false,
                             "nodeType": "Literal",
-                            "src": "1803:1:5",
+                            "src": "1864:1:5",
                             "subdenomination": null,
                             "typeDescriptions": {
                               "typeIdentifier": "t_rational_2_by_1",
@@ -1039,34 +1039,34 @@
                             },
                             "value": "2"
                           },
-                          "src": "1788:16:5",
+                          "src": "1849:16:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         }
                       ],
-                      "id": 625,
+                      "id": 717,
                       "isConstant": false,
                       "isInlineArray": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "TupleExpression",
-                      "src": "1787:18:5",
+                      "src": "1848:18:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1772:33:5",
+                    "src": "1833:33:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1761:44:5"
+                  "src": "1822:44:5"
                 },
                 {
                   "condition": {
@@ -1075,19 +1075,19 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 630,
+                    "id": 722,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 628,
+                      "id": 720,
                       "name": "tmp",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 620,
-                      "src": "1851:3:5",
+                      "referencedDeclaration": 712,
+                      "src": "1915:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1097,18 +1097,18 @@
                     "operator": ">",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 629,
+                      "id": 721,
                       "name": "_actualPrice",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 612,
-                      "src": "1857:12:5",
+                      "referencedDeclaration": 704,
+                      "src": "1921:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "1851:18:5",
+                    "src": "1915:18:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1117,37 +1117,37 @@
                   "falseBody": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 633,
+                      "id": 725,
                       "name": "tmp",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 620,
-                      "src": "1901:3:5",
+                      "referencedDeclaration": 712,
+                      "src": "1966:3:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "functionReturnParameters": 618,
-                    "id": 634,
+                    "functionReturnParameters": 710,
+                    "id": 726,
                     "nodeType": "Return",
-                    "src": "1894:10:5"
+                    "src": "1959:10:5"
                   },
-                  "id": 635,
+                  "id": 727,
                   "nodeType": "IfStatement",
-                  "src": "1847:57:5",
+                  "src": "1911:58:5",
                   "trueBody": {
                     "expression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 631,
+                      "id": 723,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1878:1:5",
+                      "src": "1942:1:5",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
@@ -1155,32 +1155,32 @@
                       },
                       "value": "0"
                     },
-                    "functionReturnParameters": 618,
-                    "id": 632,
+                    "functionReturnParameters": 710,
+                    "id": 724,
                     "nodeType": "Return",
-                    "src": "1871:8:5"
+                    "src": "1935:8:5"
                   }
                 }
               ]
             },
             "documentation": null,
-            "id": 637,
+            "id": 729,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getPrice",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 615,
+              "id": 707,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 612,
+                  "id": 704,
                   "name": "_actualPrice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1687:17:5",
+                  "scope": 729,
+                  "src": "1747:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1188,10 +1188,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 611,
+                    "id": 703,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1687:4:5",
+                    "src": "1747:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1202,11 +1202,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 614,
+                  "id": 706,
                   "name": "_deltaBlocks",
                   "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1706:17:5",
+                  "scope": 729,
+                  "src": "1766:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1214,10 +1214,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 613,
+                    "id": 705,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1706:4:5",
+                    "src": "1766:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1227,19 +1227,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1686:38:5"
+              "src": "1746:38:5"
             },
             "returnParameters": {
-              "id": 618,
+              "id": 710,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 617,
+                  "id": 709,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1745:4:5",
+                  "scope": 729,
+                  "src": "1805:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1247,10 +1247,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 616,
+                    "id": 708,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1745:4:5",
+                    "src": "1805:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1260,1267 +1260,1366 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1744:6:5"
+              "src": "1804:6:5"
             },
-            "scope": 638,
-            "src": "1669:242:5",
+            "scope": 730,
+            "src": "1729:248:5",
             "stateMutability": "view",
-            "superFunction": 550,
+            "superFunction": 642,
             "visibility": "public"
           }
         ],
-        "scope": 639,
-        "src": "1628:285:5"
+        "scope": 731,
+        "src": "1686:294:5"
       }
     ],
-    "src": "0:1914:5"
+    "src": "0:1982:5"
   },
   "legacyAST": {
-    "absolutePath": "/Users/andrea/Desktop/workspace/DAPP_SmartAuction/contracts/Strategy.sol",
-    "exportedSymbols": {
-      "FastStrategy": [
-        608
-      ],
-      "NormalStrategy": [
-        578
-      ],
-      "SlowStrategy": [
-        638
-      ],
-      "Strategy": [
-        551
-      ]
-    },
-    "id": 639,
-    "nodeType": "SourceUnit",
-    "nodes": [
-      {
-        "id": 541,
-        "literals": [
-          "solidity",
-          "^",
-          "0.5",
-          ".1"
+    "attributes": {
+      "absolutePath": "project:/contracts/Strategy.sol",
+      "exportedSymbols": {
+        "FastStrategy": [
+          700
         ],
-        "nodeType": "PragmaDirective",
+        "NormalStrategy": [
+          670
+        ],
+        "SlowStrategy": [
+          730
+        ],
+        "Strategy": [
+          643
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".1"
+          ]
+        },
+        "id": 633,
+        "name": "PragmaDirective",
         "src": "0:24:5"
       },
       {
-        "baseContracts": [],
-        "contractDependencies": [],
-        "contractKind": "contract",
-        "documentation": "@title Strategy contract\n @author Andrea Bruno 585457\n @notice This abstract contract describes what a strategy should implement.\n @dev The following comments are written using the Solidity NatSpec Format.",
-        "fullyImplemented": false,
-        "id": 551,
-        "linearizedBaseContracts": [
-          551
-        ],
-        "name": "Strategy",
-        "nodeType": "ContractDefinition",
-        "nodes": [
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": "@dev The following comments are written using the Solidity NatSpec Format.",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            643
+          ],
+          "name": "Strategy",
+          "scope": 731
+        },
+        "children": [
           {
-            "body": null,
-            "documentation": "@notice This function compute the price.\n @param _actualPrice is the current price of the item\n @param _deltaBlocks the blocks elapsed.\n @return The updated current price.",
-            "id": 550,
-            "implemented": false,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getPrice",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 546,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 543,
-                  "name": "_actualPrice",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 550,
-                  "src": "490:17:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 542,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "490:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 545,
-                  "name": "_deltaBlocks",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 550,
-                  "src": "509:17:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 544,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "509:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
+            "attributes": {
+              "body": null,
+              "documentation": "@return The updated current price.",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
               ],
-              "src": "489:38:5"
+              "name": "getPrice",
+              "scope": 643,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
             },
-            "returnParameters": {
-              "id": 549,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 548,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 550,
-                  "src": "548:4:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 547,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "548:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "547:6:5"
-            },
-            "scope": 551,
-            "src": "472:82:5",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "public"
-          }
-        ],
-        "scope": 639,
-        "src": "246:310:5"
-      },
-      {
-        "baseContracts": [
-          {
-            "arguments": null,
-            "baseName": {
-              "contractScope": null,
-              "id": 552,
-              "name": "Strategy",
-              "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 551,
-              "src": "729:8:5",
-              "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Strategy_$551",
-                "typeString": "contract Strategy"
-              }
-            },
-            "id": 553,
-            "nodeType": "InheritanceSpecifier",
-            "src": "729:8:5"
-          }
-        ],
-        "contractDependencies": [
-          551
-        ],
-        "contractKind": "contract",
-        "documentation": "@title NormalStrategy contract\n @notice This contract implement a linear decrease function.\n @dev This contract extends `Strategy`",
-        "fullyImplemented": true,
-        "id": 578,
-        "linearizedBaseContracts": [
-          578,
-          551
-        ],
-        "name": "NormalStrategy",
-        "nodeType": "ContractDefinition",
-        "nodes": [
-          {
-            "body": {
-              "id": 576,
-              "nodeType": "Block",
-              "src": "827:154:5",
-              "statements": [
-                {
-                  "assignments": [
-                    563
-                  ],
-                  "declarations": [
-                    {
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
                       "constant": false,
-                      "id": 563,
-                      "name": "tmp",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 576,
-                      "src": "837:8:5",
+                      "name": "_actualPrice",
+                      "scope": 642,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      },
-                      "typeName": {
-                        "id": 562,
-                        "name": "uint",
-                        "nodeType": "ElementaryTypeName",
-                        "src": "837:4:5",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
+                      "type": "uint256",
                       "value": null,
                       "visibility": "internal"
-                    }
-                  ],
-                  "id": 567,
-                  "initialValue": {
-                    "argumentTypes": null,
-                    "commonType": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
                     },
-                    "id": 566,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftExpression": {
-                      "argumentTypes": null,
-                      "id": 564,
-                      "name": "_actualPrice",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 555,
-                      "src": "848:12:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 634,
+                        "name": "ElementaryTypeName",
+                        "src": "503:4:5"
                       }
-                    },
-                    "nodeType": "BinaryOperation",
-                    "operator": "-",
-                    "rightExpression": {
-                      "argumentTypes": null,
-                      "id": 565,
+                    ],
+                    "id": 635,
+                    "name": "VariableDeclaration",
+                    "src": "503:17:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
                       "name": "_deltaBlocks",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 557,
-                      "src": "863:12:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "848:27:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "837:38:5"
-                },
-                {
-                  "condition": {
-                    "argumentTypes": null,
-                    "commonType": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    },
-                    "id": 570,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftExpression": {
-                      "argumentTypes": null,
-                      "id": 568,
-                      "name": "tmp",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 563,
-                      "src": "921:3:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "BinaryOperation",
-                    "operator": ">",
-                    "rightExpression": {
-                      "argumentTypes": null,
-                      "id": 569,
-                      "name": "_actualPrice",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 555,
-                      "src": "927:12:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "921:18:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "falseBody": {
-                    "expression": {
-                      "argumentTypes": null,
-                      "id": 573,
-                      "name": "tmp",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 563,
-                      "src": "971:3:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "functionReturnParameters": 561,
-                    "id": 574,
-                    "nodeType": "Return",
-                    "src": "964:10:5"
-                  },
-                  "id": 575,
-                  "nodeType": "IfStatement",
-                  "src": "917:57:5",
-                  "trueBody": {
-                    "expression": {
-                      "argumentTypes": null,
-                      "hexValue": "30",
-                      "id": 571,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "948:1:5",
-                      "subdenomination": null,
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_0_by_1",
-                        "typeString": "int_const 0"
-                      },
-                      "value": "0"
-                    },
-                    "functionReturnParameters": 561,
-                    "id": 572,
-                    "nodeType": "Return",
-                    "src": "941:8:5"
-                  }
-                }
-              ]
-            },
-            "documentation": null,
-            "id": 577,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getPrice",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 558,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 555,
-                  "name": "_actualPrice",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 577,
-                  "src": "763:17:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 554,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "763:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 557,
-                  "name": "_deltaBlocks",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 577,
-                  "src": "782:17:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 556,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "782:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "762:38:5"
-            },
-            "returnParameters": {
-              "id": 561,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 560,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 577,
-                  "src": "821:4:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 559,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "821:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "820:6:5"
-            },
-            "scope": 578,
-            "src": "745:236:5",
-            "stateMutability": "view",
-            "superFunction": 550,
-            "visibility": "public"
-          }
-        ],
-        "scope": 639,
-        "src": "702:281:5"
-      },
-      {
-        "baseContracts": [
-          {
-            "arguments": null,
-            "baseName": {
-              "contractScope": null,
-              "id": 579,
-              "name": "Strategy",
-              "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 551,
-              "src": "1188:8:5",
-              "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Strategy_$551",
-                "typeString": "contract Strategy"
-              }
-            },
-            "id": 580,
-            "nodeType": "InheritanceSpecifier",
-            "src": "1188:8:5"
-          }
-        ],
-        "contractDependencies": [
-          551
-        ],
-        "contractKind": "contract",
-        "documentation": "@title FastStrategy contract\n @notice This contract implement a linear decrease function, twice faster than `NormalStrategy`\n @dev This contract extends `Strategy`",
-        "fullyImplemented": true,
-        "id": 608,
-        "linearizedBaseContracts": [
-          608,
-          551
-        ],
-        "name": "FastStrategy",
-        "nodeType": "ContractDefinition",
-        "nodes": [
-          {
-            "body": {
-              "id": 606,
-              "nodeType": "Block",
-              "src": "1286:160:5",
-              "statements": [
-                {
-                  "assignments": [
-                    590
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 590,
-                      "name": "tmp",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 606,
-                      "src": "1296:8:5",
+                      "scope": 642,
                       "stateVariable": false,
                       "storageLocation": "default",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      },
-                      "typeName": {
-                        "id": 589,
-                        "name": "uint",
-                        "nodeType": "ElementaryTypeName",
-                        "src": "1296:4:5",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
+                      "type": "uint256",
                       "value": null,
                       "visibility": "internal"
-                    }
-                  ],
-                  "id": 597,
-                  "initialValue": {
-                    "argumentTypes": null,
-                    "commonType": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
                     },
-                    "id": 596,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftExpression": {
-                      "argumentTypes": null,
-                      "id": 591,
-                      "name": "_actualPrice",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 582,
-                      "src": "1307:12:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 636,
+                        "name": "ElementaryTypeName",
+                        "src": "522:4:5"
                       }
+                    ],
+                    "id": 637,
+                    "name": "VariableDeclaration",
+                    "src": "522:17:5"
+                  }
+                ],
+                "id": 638,
+                "name": "ParameterList",
+                "src": "502:38:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 642,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
                     },
-                    "nodeType": "BinaryOperation",
-                    "operator": "-",
-                    "rightExpression": {
-                      "argumentTypes": null,
-                      "components": [
-                        {
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 639,
+                        "name": "ElementaryTypeName",
+                        "src": "561:4:5"
+                      }
+                    ],
+                    "id": 640,
+                    "name": "VariableDeclaration",
+                    "src": "561:4:5"
+                  }
+                ],
+                "id": 641,
+                "name": "ParameterList",
+                "src": "560:6:5"
+              }
+            ],
+            "id": 642,
+            "name": "FunctionDefinition",
+            "src": "485:82:5"
+          }
+        ],
+        "id": 643,
+        "name": "ContractDefinition",
+        "src": "253:317:5"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            643
+          ],
+          "contractKind": "contract",
+          "documentation": "@dev This contract extends `Strategy`",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            670,
+            643
+          ],
+          "name": "NormalStrategy",
+          "scope": 731
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Strategy",
+                  "referencedDeclaration": 643,
+                  "type": "contract Strategy"
+                },
+                "id": 644,
+                "name": "UserDefinedTypeName",
+                "src": "751:8:5"
+              }
+            ],
+            "id": 645,
+            "name": "InheritanceSpecifier",
+            "src": "751:8:5"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getPrice",
+              "scope": 670,
+              "stateMutability": "view",
+              "superFunction": 642,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_actualPrice",
+                      "scope": 669,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 646,
+                        "name": "ElementaryTypeName",
+                        "src": "787:4:5"
+                      }
+                    ],
+                    "id": 647,
+                    "name": "VariableDeclaration",
+                    "src": "787:17:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_deltaBlocks",
+                      "scope": 669,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 648,
+                        "name": "ElementaryTypeName",
+                        "src": "806:4:5"
+                      }
+                    ],
+                    "id": 649,
+                    "name": "VariableDeclaration",
+                    "src": "806:17:5"
+                  }
+                ],
+                "id": 650,
+                "name": "ParameterList",
+                "src": "786:38:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 669,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 651,
+                        "name": "ElementaryTypeName",
+                        "src": "845:4:5"
+                      }
+                    ],
+                    "id": 652,
+                    "name": "VariableDeclaration",
+                    "src": "845:4:5"
+                  }
+                ],
+                "id": 653,
+                "name": "ParameterList",
+                "src": "844:6:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        655
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "tmp",
+                          "scope": 668,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint",
+                              "type": "uint256"
+                            },
+                            "id": 654,
+                            "name": "ElementaryTypeName",
+                            "src": "862:4:5"
+                          }
+                        ],
+                        "id": 655,
+                        "name": "VariableDeclaration",
+                        "src": "862:8:5"
+                      },
+                      {
+                        "attributes": {
                           "argumentTypes": null,
                           "commonType": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 594,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
-                          "leftExpression": {
-                            "argumentTypes": null,
-                            "hexValue": "32",
-                            "id": 592,
-                            "isConstant": false,
-                            "isLValue": false,
-                            "isPure": true,
-                            "kind": "number",
-                            "lValueRequested": false,
-                            "nodeType": "Literal",
-                            "src": "1323:1:5",
-                            "subdenomination": null,
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_rational_2_by_1",
-                              "typeString": "int_const 2"
+                          "operator": "-",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 647,
+                              "type": "uint256",
+                              "value": "_actualPrice"
                             },
-                            "value": "2"
+                            "id": 656,
+                            "name": "Identifier",
+                            "src": "873:12:5"
                           },
-                          "nodeType": "BinaryOperation",
-                          "operator": "*",
-                          "rightExpression": {
-                            "argumentTypes": null,
-                            "id": 593,
-                            "name": "_deltaBlocks",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 584,
-                            "src": "1327:12:5",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
-                            }
-                          },
-                          "src": "1323:16:5",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 649,
+                              "type": "uint256",
+                              "value": "_deltaBlocks"
+                            },
+                            "id": 657,
+                            "name": "Identifier",
+                            "src": "888:12:5"
                           }
-                        }
-                      ],
-                      "id": 595,
-                      "isConstant": false,
-                      "isInlineArray": false,
-                      "isLValue": false,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "nodeType": "TupleExpression",
-                      "src": "1322:18:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
+                        ],
+                        "id": 658,
+                        "name": "BinaryOperation",
+                        "src": "873:27:5"
                       }
-                    },
-                    "src": "1307:33:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
+                    ],
+                    "id": 659,
+                    "name": "VariableDeclarationStatement",
+                    "src": "862:38:5"
                   },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "1296:44:5"
-                },
-                {
-                  "condition": {
-                    "argumentTypes": null,
-                    "commonType": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    },
-                    "id": 600,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftExpression": {
-                      "argumentTypes": null,
-                      "id": 598,
-                      "name": "tmp",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 590,
-                      "src": "1386:3:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "BinaryOperation",
-                    "operator": ">",
-                    "rightExpression": {
-                      "argumentTypes": null,
-                      "id": 599,
-                      "name": "_actualPrice",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 582,
-                      "src": "1392:12:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "1386:18:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "falseBody": {
-                    "expression": {
-                      "argumentTypes": null,
-                      "id": 603,
-                      "name": "tmp",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 590,
-                      "src": "1436:3:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "functionReturnParameters": 588,
-                    "id": 604,
-                    "nodeType": "Return",
-                    "src": "1429:10:5"
-                  },
-                  "id": 605,
-                  "nodeType": "IfStatement",
-                  "src": "1382:57:5",
-                  "trueBody": {
-                    "expression": {
-                      "argumentTypes": null,
-                      "hexValue": "30",
-                      "id": 601,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "1413:1:5",
-                      "subdenomination": null,
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_0_by_1",
-                        "typeString": "int_const 0"
-                      },
-                      "value": "0"
-                    },
-                    "functionReturnParameters": 588,
-                    "id": 602,
-                    "nodeType": "Return",
-                    "src": "1406:8:5"
-                  }
-                }
-              ]
-            },
-            "documentation": null,
-            "id": 607,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getPrice",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 585,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 582,
-                  "name": "_actualPrice",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 607,
-                  "src": "1222:17:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 581,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1222:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 584,
-                  "name": "_deltaBlocks",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 607,
-                  "src": "1241:17:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 583,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1241:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1221:38:5"
-            },
-            "returnParameters": {
-              "id": 588,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 587,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 607,
-                  "src": "1280:4:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 586,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1280:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1279:6:5"
-            },
-            "scope": 608,
-            "src": "1204:242:5",
-            "stateMutability": "view",
-            "superFunction": 550,
-            "visibility": "public"
-          }
-        ],
-        "scope": 639,
-        "src": "1163:285:5"
-      },
-      {
-        "baseContracts": [
-          {
-            "arguments": null,
-            "baseName": {
-              "contractScope": null,
-              "id": 609,
-              "name": "Strategy",
-              "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 551,
-              "src": "1653:8:5",
-              "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Strategy_$551",
-                "typeString": "contract Strategy"
-              }
-            },
-            "id": 610,
-            "nodeType": "InheritanceSpecifier",
-            "src": "1653:8:5"
-          }
-        ],
-        "contractDependencies": [
-          551
-        ],
-        "contractKind": "contract",
-        "documentation": "@title SlowStrategy contract\n @notice This contract implement a linear decrease function, twice slower than `NormalStrategy`\n @dev This contract extends `Strategy`",
-        "fullyImplemented": true,
-        "id": 638,
-        "linearizedBaseContracts": [
-          638,
-          551
-        ],
-        "name": "SlowStrategy",
-        "nodeType": "ContractDefinition",
-        "nodes": [
-          {
-            "body": {
-              "id": 636,
-              "nodeType": "Block",
-              "src": "1751:160:5",
-              "statements": [
-                {
-                  "assignments": [
-                    620
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 620,
-                      "name": "tmp",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 636,
-                      "src": "1761:8:5",
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      },
-                      "typeName": {
-                        "id": 619,
-                        "name": "uint",
-                        "nodeType": "ElementaryTypeName",
-                        "src": "1761:4:5",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      "value": null,
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 627,
-                  "initialValue": {
-                    "argumentTypes": null,
-                    "commonType": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    },
-                    "id": 626,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftExpression": {
-                      "argumentTypes": null,
-                      "id": 621,
-                      "name": "_actualPrice",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 612,
-                      "src": "1772:12:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "BinaryOperation",
-                    "operator": "-",
-                    "rightExpression": {
-                      "argumentTypes": null,
-                      "components": [
-                        {
+                  {
+                    "children": [
+                      {
+                        "attributes": {
                           "argumentTypes": null,
                           "commonType": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 624,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
-                          "leftExpression": {
-                            "argumentTypes": null,
-                            "id": 622,
-                            "name": "_deltaBlocks",
-                            "nodeType": "Identifier",
-                            "overloadedDeclarations": [],
-                            "referencedDeclaration": 614,
-                            "src": "1788:12:5",
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_uint256",
-                              "typeString": "uint256"
-                            }
-                          },
-                          "nodeType": "BinaryOperation",
-                          "operator": "/",
-                          "rightExpression": {
-                            "argumentTypes": null,
-                            "hexValue": "32",
-                            "id": 623,
-                            "isConstant": false,
-                            "isLValue": false,
-                            "isPure": true,
-                            "kind": "number",
-                            "lValueRequested": false,
-                            "nodeType": "Literal",
-                            "src": "1803:1:5",
-                            "subdenomination": null,
-                            "typeDescriptions": {
-                              "typeIdentifier": "t_rational_2_by_1",
-                              "typeString": "int_const 2"
+                          "operator": ">",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 655,
+                              "type": "uint256",
+                              "value": "tmp"
                             },
-                            "value": "2"
+                            "id": 660,
+                            "name": "Identifier",
+                            "src": "949:3:5"
                           },
-                          "src": "1788:16:5",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_uint256",
-                            "typeString": "uint256"
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 647,
+                              "type": "uint256",
+                              "value": "_actualPrice"
+                            },
+                            "id": 661,
+                            "name": "Identifier",
+                            "src": "955:12:5"
                           }
-                        }
-                      ],
-                      "id": 625,
-                      "isConstant": false,
-                      "isInlineArray": false,
-                      "isLValue": false,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "nodeType": "TupleExpression",
-                      "src": "1787:18:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "1772:33:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "1761:44:5"
-                },
-                {
-                  "condition": {
-                    "argumentTypes": null,
-                    "commonType": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    },
-                    "id": 630,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftExpression": {
-                      "argumentTypes": null,
-                      "id": 628,
-                      "name": "tmp",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 620,
-                      "src": "1851:3:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "BinaryOperation",
-                    "operator": ">",
-                    "rightExpression": {
-                      "argumentTypes": null,
-                      "id": 629,
-                      "name": "_actualPrice",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 612,
-                      "src": "1857:12:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "1851:18:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "falseBody": {
-                    "expression": {
-                      "argumentTypes": null,
-                      "id": 633,
-                      "name": "tmp",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 620,
-                      "src": "1901:3:5",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "functionReturnParameters": 618,
-                    "id": 634,
-                    "nodeType": "Return",
-                    "src": "1894:10:5"
-                  },
-                  "id": 635,
-                  "nodeType": "IfStatement",
-                  "src": "1847:57:5",
-                  "trueBody": {
-                    "expression": {
-                      "argumentTypes": null,
-                      "hexValue": "30",
-                      "id": 631,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "1878:1:5",
-                      "subdenomination": null,
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_rational_0_by_1",
-                        "typeString": "int_const 0"
+                        ],
+                        "id": 662,
+                        "name": "BinaryOperation",
+                        "src": "949:18:5"
                       },
-                      "value": "0"
-                    },
-                    "functionReturnParameters": 618,
-                    "id": 632,
-                    "nodeType": "Return",
-                    "src": "1871:8:5"
+                      {
+                        "attributes": {
+                          "functionReturnParameters": 653
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 663,
+                            "name": "Literal",
+                            "src": "976:1:5"
+                          }
+                        ],
+                        "id": 664,
+                        "name": "Return",
+                        "src": "969:8:5"
+                      },
+                      {
+                        "attributes": {
+                          "functionReturnParameters": 653
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 655,
+                              "type": "uint256",
+                              "value": "tmp"
+                            },
+                            "id": 665,
+                            "name": "Identifier",
+                            "src": "1000:3:5"
+                          }
+                        ],
+                        "id": 666,
+                        "name": "Return",
+                        "src": "993:10:5"
+                      }
+                    ],
+                    "id": 667,
+                    "name": "IfStatement",
+                    "src": "945:58:5"
                   }
-                }
-              ]
-            },
-            "documentation": null,
-            "id": 637,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "getPrice",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 615,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 612,
-                  "name": "_actualPrice",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1687:17:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 611,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1687:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 614,
-                  "name": "_deltaBlocks",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1706:17:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 613,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1706:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1686:38:5"
-            },
-            "returnParameters": {
-              "id": 618,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 617,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1745:4:5",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 616,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "1745:4:5",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "1744:6:5"
-            },
-            "scope": 638,
-            "src": "1669:242:5",
-            "stateMutability": "view",
-            "superFunction": 550,
-            "visibility": "public"
+                ],
+                "id": 668,
+                "name": "Block",
+                "src": "851:160:5"
+              }
+            ],
+            "id": 669,
+            "name": "FunctionDefinition",
+            "src": "769:242:5"
           }
         ],
-        "scope": 639,
-        "src": "1628:285:5"
+        "id": 670,
+        "name": "ContractDefinition",
+        "src": "724:290:5"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            643
+          ],
+          "contractKind": "contract",
+          "documentation": "@dev This contract extends `Strategy`",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            700,
+            643
+          ],
+          "name": "FastStrategy",
+          "scope": 731
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Strategy",
+                  "referencedDeclaration": 643,
+                  "type": "contract Strategy"
+                },
+                "id": 671,
+                "name": "UserDefinedTypeName",
+                "src": "1228:8:5"
+              }
+            ],
+            "id": 672,
+            "name": "InheritanceSpecifier",
+            "src": "1228:8:5"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getPrice",
+              "scope": 700,
+              "stateMutability": "view",
+              "superFunction": 642,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_actualPrice",
+                      "scope": 699,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 673,
+                        "name": "ElementaryTypeName",
+                        "src": "1264:4:5"
+                      }
+                    ],
+                    "id": 674,
+                    "name": "VariableDeclaration",
+                    "src": "1264:17:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_deltaBlocks",
+                      "scope": 699,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 675,
+                        "name": "ElementaryTypeName",
+                        "src": "1283:4:5"
+                      }
+                    ],
+                    "id": 676,
+                    "name": "VariableDeclaration",
+                    "src": "1283:17:5"
+                  }
+                ],
+                "id": 677,
+                "name": "ParameterList",
+                "src": "1263:38:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 699,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 678,
+                        "name": "ElementaryTypeName",
+                        "src": "1322:4:5"
+                      }
+                    ],
+                    "id": 679,
+                    "name": "VariableDeclaration",
+                    "src": "1322:4:5"
+                  }
+                ],
+                "id": 680,
+                "name": "ParameterList",
+                "src": "1321:6:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        682
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "tmp",
+                          "scope": 698,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint",
+                              "type": "uint256"
+                            },
+                            "id": 681,
+                            "name": "ElementaryTypeName",
+                            "src": "1339:4:5"
+                          }
+                        ],
+                        "id": 682,
+                        "name": "VariableDeclaration",
+                        "src": "1339:8:5"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "-",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 674,
+                              "type": "uint256",
+                              "value": "_actualPrice"
+                            },
+                            "id": 683,
+                            "name": "Identifier",
+                            "src": "1350:12:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isInlineArray": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "commonType": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "*",
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "32",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "number",
+                                      "type": "int_const 2",
+                                      "value": "2"
+                                    },
+                                    "id": 684,
+                                    "name": "Literal",
+                                    "src": "1366:1:5"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 676,
+                                      "type": "uint256",
+                                      "value": "_deltaBlocks"
+                                    },
+                                    "id": 685,
+                                    "name": "Identifier",
+                                    "src": "1370:12:5"
+                                  }
+                                ],
+                                "id": 686,
+                                "name": "BinaryOperation",
+                                "src": "1366:16:5"
+                              }
+                            ],
+                            "id": 687,
+                            "name": "TupleExpression",
+                            "src": "1365:18:5"
+                          }
+                        ],
+                        "id": 688,
+                        "name": "BinaryOperation",
+                        "src": "1350:33:5"
+                      }
+                    ],
+                    "id": 689,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1339:44:5"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": ">",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 682,
+                              "type": "uint256",
+                              "value": "tmp"
+                            },
+                            "id": 690,
+                            "name": "Identifier",
+                            "src": "1432:3:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 674,
+                              "type": "uint256",
+                              "value": "_actualPrice"
+                            },
+                            "id": 691,
+                            "name": "Identifier",
+                            "src": "1438:12:5"
+                          }
+                        ],
+                        "id": 692,
+                        "name": "BinaryOperation",
+                        "src": "1432:18:5"
+                      },
+                      {
+                        "attributes": {
+                          "functionReturnParameters": 680
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 693,
+                            "name": "Literal",
+                            "src": "1459:1:5"
+                          }
+                        ],
+                        "id": 694,
+                        "name": "Return",
+                        "src": "1452:8:5"
+                      },
+                      {
+                        "attributes": {
+                          "functionReturnParameters": 680
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 682,
+                              "type": "uint256",
+                              "value": "tmp"
+                            },
+                            "id": 695,
+                            "name": "Identifier",
+                            "src": "1483:3:5"
+                          }
+                        ],
+                        "id": 696,
+                        "name": "Return",
+                        "src": "1476:10:5"
+                      }
+                    ],
+                    "id": 697,
+                    "name": "IfStatement",
+                    "src": "1428:58:5"
+                  }
+                ],
+                "id": 698,
+                "name": "Block",
+                "src": "1328:166:5"
+              }
+            ],
+            "id": 699,
+            "name": "FunctionDefinition",
+            "src": "1246:248:5"
+          }
+        ],
+        "id": 700,
+        "name": "ContractDefinition",
+        "src": "1203:294:5"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            643
+          ],
+          "contractKind": "contract",
+          "documentation": "@dev This contract extends `Strategy`",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            730,
+            643
+          ],
+          "name": "SlowStrategy",
+          "scope": 731
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Strategy",
+                  "referencedDeclaration": 643,
+                  "type": "contract Strategy"
+                },
+                "id": 701,
+                "name": "UserDefinedTypeName",
+                "src": "1711:8:5"
+              }
+            ],
+            "id": 702,
+            "name": "InheritanceSpecifier",
+            "src": "1711:8:5"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getPrice",
+              "scope": 730,
+              "stateMutability": "view",
+              "superFunction": 642,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_actualPrice",
+                      "scope": 729,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 703,
+                        "name": "ElementaryTypeName",
+                        "src": "1747:4:5"
+                      }
+                    ],
+                    "id": 704,
+                    "name": "VariableDeclaration",
+                    "src": "1747:17:5"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_deltaBlocks",
+                      "scope": 729,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 705,
+                        "name": "ElementaryTypeName",
+                        "src": "1766:4:5"
+                      }
+                    ],
+                    "id": 706,
+                    "name": "VariableDeclaration",
+                    "src": "1766:17:5"
+                  }
+                ],
+                "id": 707,
+                "name": "ParameterList",
+                "src": "1746:38:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 729,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 708,
+                        "name": "ElementaryTypeName",
+                        "src": "1805:4:5"
+                      }
+                    ],
+                    "id": 709,
+                    "name": "VariableDeclaration",
+                    "src": "1805:4:5"
+                  }
+                ],
+                "id": 710,
+                "name": "ParameterList",
+                "src": "1804:6:5"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        712
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "tmp",
+                          "scope": 728,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint",
+                              "type": "uint256"
+                            },
+                            "id": 711,
+                            "name": "ElementaryTypeName",
+                            "src": "1822:4:5"
+                          }
+                        ],
+                        "id": 712,
+                        "name": "VariableDeclaration",
+                        "src": "1822:8:5"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "-",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 704,
+                              "type": "uint256",
+                              "value": "_actualPrice"
+                            },
+                            "id": 713,
+                            "name": "Identifier",
+                            "src": "1833:12:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isInlineArray": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "commonType": {
+                                    "typeIdentifier": "t_uint256",
+                                    "typeString": "uint256"
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "/",
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 706,
+                                      "type": "uint256",
+                                      "value": "_deltaBlocks"
+                                    },
+                                    "id": 714,
+                                    "name": "Identifier",
+                                    "src": "1849:12:5"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "32",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "number",
+                                      "type": "int_const 2",
+                                      "value": "2"
+                                    },
+                                    "id": 715,
+                                    "name": "Literal",
+                                    "src": "1864:1:5"
+                                  }
+                                ],
+                                "id": 716,
+                                "name": "BinaryOperation",
+                                "src": "1849:16:5"
+                              }
+                            ],
+                            "id": 717,
+                            "name": "TupleExpression",
+                            "src": "1848:18:5"
+                          }
+                        ],
+                        "id": 718,
+                        "name": "BinaryOperation",
+                        "src": "1833:33:5"
+                      }
+                    ],
+                    "id": 719,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1822:44:5"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": ">",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 712,
+                              "type": "uint256",
+                              "value": "tmp"
+                            },
+                            "id": 720,
+                            "name": "Identifier",
+                            "src": "1915:3:5"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 704,
+                              "type": "uint256",
+                              "value": "_actualPrice"
+                            },
+                            "id": 721,
+                            "name": "Identifier",
+                            "src": "1921:12:5"
+                          }
+                        ],
+                        "id": 722,
+                        "name": "BinaryOperation",
+                        "src": "1915:18:5"
+                      },
+                      {
+                        "attributes": {
+                          "functionReturnParameters": 710
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 723,
+                            "name": "Literal",
+                            "src": "1942:1:5"
+                          }
+                        ],
+                        "id": 724,
+                        "name": "Return",
+                        "src": "1935:8:5"
+                      },
+                      {
+                        "attributes": {
+                          "functionReturnParameters": 710
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 712,
+                              "type": "uint256",
+                              "value": "tmp"
+                            },
+                            "id": 725,
+                            "name": "Identifier",
+                            "src": "1966:3:5"
+                          }
+                        ],
+                        "id": 726,
+                        "name": "Return",
+                        "src": "1959:10:5"
+                      }
+                    ],
+                    "id": 727,
+                    "name": "IfStatement",
+                    "src": "1911:58:5"
+                  }
+                ],
+                "id": 728,
+                "name": "Block",
+                "src": "1811:166:5"
+              }
+            ],
+            "id": 729,
+            "name": "FunctionDefinition",
+            "src": "1729:248:5"
+          }
+        ],
+        "id": 730,
+        "name": "ContractDefinition",
+        "src": "1686:294:5"
       }
     ],
-    "src": "0:1914:5"
+    "id": 731,
+    "name": "SourceUnit",
+    "src": "0:1982:5"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.8+commit.23d335f2.Emscripten.clang"
+    "version": "0.5.1+commit.c8a2cb62.Emscripten.clang"
   },
   "networks": {
     "3": {
@@ -2554,15 +2653,13 @@
       "transactionHash": "0x6ac109cd71bef90fceaa4590e7281a6a827c2aa828d4b9a4699af4c0624114d0"
     }
   },
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-07-09T16:17:58.171Z",
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2023-12-01T15:14:55.778Z",
   "devdoc": {
     "details": "This contract extends `Strategy`",
-    "methods": {},
-    "title": "FastStrategy contract"
+    "methods": {}
   },
   "userdoc": {
-    "methods": {},
-    "notice": "This contract implement a linear decrease function, twice faster than `NormalStrategy`"
+    "methods": {}
   }
 }
