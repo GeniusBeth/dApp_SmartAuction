@@ -3,3 +3,4 @@ blockchain
 node_modules
 truffle-config.js
 commands.txt
+.env

@@ -1530,10 +1530,16 @@
       "links": {},
       "address": "0x4EA7735c856574Fe1CC9BEf5D159af511Cc7e63B",
       "transactionHash": "0x090a6d4fac17eb45bcc3de68d00670eaf6f2553c11a25d98ef9db61aa27976ab"
+    },
+    "1701512070134": {
+      "events": {},
+      "links": {},
+      "address": "0x9496fbA2acE13af528e3Fbe11A68954CB1a6437c",
+      "transactionHash": "0x4afa6dcb597df9eeefb60b2151578973cf65eef658af165a7a33af625c43fa43"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-12-01T15:14:55.763Z",
+  "updatedAt": "2024-01-03T11:33:01.251Z",
   "devdoc": {
     "details": "The following comments are written using the Solidity NatSpec Format.",
     "methods": {

@@ -2651,10 +2651,16 @@
       "links": {},
       "address": "0x9C4751F7bC5Ec99108f0EbE88f004590811681cC",
       "transactionHash": "0x6ac109cd71bef90fceaa4590e7281a6a827c2aa828d4b9a4699af4c0624114d0"
+    },
+    "1701512070134": {
+      "events": {},
+      "links": {},
+      "address": "0x0136DD40D4E243Fd86eC8713897A03aB22508687",
+      "transactionHash": "0xa418021bdd1a192ce992998b42ccd0ec58131e48bb69f772134887f0265843a4"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2023-12-01T15:14:55.778Z",
+  "updatedAt": "2024-01-03T11:33:01.266Z",
   "devdoc": {
     "details": "This contract extends `Strategy`",
     "methods": {}
